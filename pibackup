@@ -28,7 +28,4 @@ sudo dd if=/dev/mmcblk0 of="$BACKUP_IMAGE" bs=1M status=progress
 echo "Shrinking the image with PiShrink..."
 sudo /usr/local/bin/pishrink -v -z -a "$BACKUP_IMAGE"
 
-echo "Changing ownership of the image to user 'pi'..."
-#sudo chown pi:pi "$BACKUP_IMAGE"
-
 echo "Backup complete! Image stored at $BACKUP_IMAGE"
