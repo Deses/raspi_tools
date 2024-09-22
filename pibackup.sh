@@ -1,12 +1,13 @@
 #!/bin/bash
 
-OUTPUT_FOLDER="/set/your/backup/path"
+BACKUP_DIR="/set/your/backup/path"
+LOG_FILE="/set/your/log/path/cron.log"
 DATE=$(date '+%Y-%m-%d_%H-%M-%S')
 HOSTNAME=$(hostname)
-BACKUP_IMAGE="$OUTPUT_FOLDER/${HOSTNAME}_backup_$DATE.img"
+BACKUP_IMAGE="$BACKUP_DIR/${HOSTNAME}_backup_$DATE.img"
 
-if [ ! -d "$OUTPUT_FOLDER" ]; then
-    echo "Output folder $OUTPUT_FOLDER does not exist."
+if [ ! -d "$BACKUP_DIR" ]; then
+    echo "Output folder $BACKUP_DIR does not exist."
     exit 1
 fi
 
@@ -21,10 +22,14 @@ else
     fi
 fi
 
-echo "Creating backup of SD card to $BACKUP_IMAGE..."
-sudo dd if=/dev/mmcblk0 of="$BACKUP_IMAGE" bs=1M status=progress
+log() {
+    echo "---$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE" 2>&1
+}
 
-echo "Shrinking the image with PiShrink..."
-sudo /usr/local/bin/pishrink -v -z -a "$BACKUP_IMAGE"
+log  "---Creating backup of SD card to $BACKUP_IMAGE..."
+sudo dd if=/dev/mmcblk0 of="$BACKUP_IMAGE" bs=1M status=progress >> "$LOG_FILE" 2>&1
 
-echo "Backup complete! Image stored at $BACKUP_IMAGE"
+log  "---Shrinking the image with PiShrink..."
+sudo /usr/local/bin/pishrink -v -z -a "$BACKUP_IMAGE" >> "$LOG_FILE" 2>&1
+
+log  "---Backup complete! Image stored at $BACKUP_IMAGE"
