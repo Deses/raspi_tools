@@ -14,8 +14,10 @@ sudo mv pibackup.sh /usr/local/bin/pibackup
 
 ## Crontab settings
 ```
+# 5 AM Daily
 0  5 * * *      maintenance -t
 1  5 * * *      maintenance -c
+# 5 AM on saturdays
 5  5 * * 6      maintenance -u
 10 5 * * 6      maintenance -p
 15 5 * * 6      maintenance -g
