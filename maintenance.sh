@@ -39,7 +39,7 @@ help() {
     echo "Options:"
     echo "  -t, --teleport       Create a Pi-hole teleport backup"
     echo "  -c, --cleanup        Cleanup old backups"
-    echo "  -u, --update         Update and upgrade the sytem"
+    echo "  -u, --upgrade        Update and upgrade the sytem"
     echo "  -p, --piupdate       Update Pi-hole"
     echo "  -g, --gravity        Update Pi-hole adlists"
     echo "  -r, --reboot         Reboot the system"
@@ -60,7 +60,7 @@ cleanup() {
     done
 }
 
-update() {
+upgrade() {
     log "Updating system..."
     sudo apt-get update >> "$LOG_FILE" 2>&1
     sudo apt-get upgrade -y >> "$LOG_FILE" 2>&1
@@ -95,7 +95,7 @@ while [[ "$1" != "" ]]; do
                           ;;
         -c | --cleanup )  cleanup
                           ;;
-        -u | --update )   update
+        -u | --upgrade )  upgrade
                           ;;
         -p | --piupdate ) piholeUp
                           ;;
