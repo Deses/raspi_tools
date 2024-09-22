@@ -37,11 +37,12 @@ log() {
 help() {
     echo "Usage: $0 [OPTION]"
     echo "Options:"
-    echo "  -t, --teleport       Run Pi-hole teleport backup"
-    echo "  -c, --cleanup        Run backup cleanup"
-    echo "  -u, --update         Run system update and upgrade"
-    echo "  -p, --piupdate       Run Pi-hole update"
-    echo "  -r, --reboot         Log reboot and reboot the system"
+    echo "  -t, --teleport       Create a Pi-hole teleport backup"
+    echo "  -c, --cleanup        Cleanup old backups"
+    echo "  -u, --update         Update and upgrade the sytem"
+    echo "  -p, --piupdate       Update Pi-hole"
+    echo "  -g, --gravity        Update Pi-hole adlists"
+    echo "  -r, --reboot         Reboot the system"
     echo "  -h, --help           Show this help message"
     exit 0
 }
