@@ -16,8 +16,7 @@ if [ ! -f "/usr/local/bin/pishrink" ]; then
     exit 1
 else
     if ! command -v pigz &> /dev/null; then
-        echo "pigz not found. It is recommended for faster compression with PiShrink."
-        echo "Please install pigz by running: sudo apt-get install pigz"
+        echo "pigz not found. Install pigz by running: apt install pigz"
         exit 1
     fi
 fi
