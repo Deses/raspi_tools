@@ -36,7 +36,7 @@ Updates Pi-hole's adlists.
 Reboots the system.
 
 ## Options for pibackup.sh
-No options. Please edit the script to set the location of your backup folder and change the filename settings (if you want).
+No options. Edit the script to set the location of your backup folder and change the filename settings (if you want).
 
 ## Crontab example
 ```
