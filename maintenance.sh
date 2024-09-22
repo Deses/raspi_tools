@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BACKUP_DIR="/mnt/unraid/Backups"
-LOG_FILE="/mnt/unraid/Backups/cron.log"
+BACKUP_DIR="/set/your/backup/path"
+LOG_FILE="/set/your/log/path/cron.log"
 
 log() {
     if [ -f "$LOG_FILE" ]; then
