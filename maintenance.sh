@@ -19,7 +19,7 @@ log() {
             fi
         done < <(tac "$LOG_FILE")
     fi
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE" 2>&1
+    echo "---$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE" 2>&1
 }
 
 help() {
