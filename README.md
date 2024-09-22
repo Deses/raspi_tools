@@ -1,4 +1,5 @@
 These are some script I made for personal use to have all the usual maintenance tasks all in one file to be later invoked from cron or manually.
+Feel free to use them or suggest any changes. :)
 
 ## Installation
 ```
