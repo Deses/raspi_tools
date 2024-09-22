@@ -47,9 +47,14 @@ help() {
     exit 0
 }
 
-teleport() {
-    log "Creating Pi-hole teleport..."
-    cd  "$BACKUP_DIR" && /usr/local/bin/pihole -a -t >> "$LOG_FILE" 2>&1
+piholeTeleport() {
+    if ! command -v pihole &> /dev/null; then
+        log "Pi-hole is not installed. Please install Pi-hole before running this option."
+        exit 1
+    else
+        log "Creating Pi-hole teleport..."
+        cd  "$BACKUP_DIR" && /usr/local/bin/pihole -a -t >> "$LOG_FILE" 2>&1
+    fi
 }
 
 cleanup() {
@@ -60,7 +65,7 @@ cleanup() {
     done
 }
 
-upgrade() {
+sysUpgrade() {
     log "Updating system..."
     sudo apt-get update >> "$LOG_FILE" 2>&1
     sudo apt-get upgrade -y >> "$LOG_FILE" 2>&1
@@ -68,14 +73,24 @@ upgrade() {
     sudo apt-get autoclean >> "$LOG_FILE" 2>&1
 }
 
-piholeUp() {
-    log "Updating Pi-hole..."
-    /usr/local/bin/pihole -up >> "$LOG_FILE" 2>&1
+piholeUpdate() {
+    if ! command -v pihole &> /dev/null; then
+        log "Pi-hole is not installed. Please install Pi-hole before running this option."
+        exit 1
+    else
+        log "Updating Pi-hole..."
+        /usr/local/bin/pihole -up >> "$LOG_FILE" 2>&1
+    fi
 }
 
 piholeGravity() {
-    log "Updating Gravity..."
-    /usr/local/bin/pihole -g >> "$LOG_FILE" 2>&1
+    if ! command -v pihole &> /dev/null; then
+        log "Pi-hole is not installed. Please install Pi-hole before running this option."
+        exit 1
+    else
+        log "Updating Gravity..."
+        /usr/local/bin/pihole -g >> "$LOG_FILE" 2>&1
+    fi
 }
 
 sysReboot() {
@@ -91,15 +106,15 @@ fi
 
 while [[ "$1" != "" ]]; do
     case $1 in
-        -t | --teleport ) teleport
+        -t | --teleport ) piholeTeleport
                           ;;
         -c | --cleanup )  cleanup
                           ;;
-        -u | --upgrade )  upgrade
+        -p | --piupdate ) piholeUpdate
                           ;;
-        -p | --piupdate ) piholeUp
+        -g | --gravity )  piholeGravity
                           ;;
-        -g | --gravity ) piholeGravity
+        -u | --upgrade )  sysUpgrade
                           ;;
         -r | --reboot )   sysReboot
                           ;;
