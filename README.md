@@ -15,6 +15,7 @@ wget https://raw.githubusercontent.com/Deses/raspi_tools/refs/heads/main/pibacku
 chmod +x pibackup.sh
 sudo mv pibackup.sh /usr/local/bin/pibackup
 ```
+You **need** to edit both files and define a valid path to store backups and logs.
 
 ## Options for maintenance.sh
 - `-t, --teleport`
