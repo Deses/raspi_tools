@@ -3,34 +3,22 @@
 BACKUP_DIR="/mnt/unraid/Backups"
 LOG_FILE="/mnt/unraid/Backups/cron.log"
 
-# Function for logging with date in standard format
 log() {
     if [ -f "$LOG_FILE" ]; then
-        # Loop through the log file in reverse to find the last valid log entry with a date
         while read -r line; do
-            # Check if the line starts with a valid date (YYYY-MM-DD HH:MM:SS)
             if [[ "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}:[0-9]{2}:[0-9]{2} ]]; then
                 last_log_date=$(echo "$line" | awk '{print $1 " " $2}')
-
-                # Convert the last log date to seconds since epoch
                 last_log_timestamp=$(date -d "$last_log_date" +%s)
-
-                # Get the current date in seconds since epoch
                 current_timestamp=$(date +%s)
-
-                # Calculate the difference in days (86400 seconds = 1 day)
                 diff_days=$(( (current_timestamp - last_log_timestamp) / 86400 ))
 
-                # Clear the log if the last entry is older than 5 days
                 if [ "$diff_days" -gt 5 ]; then
                     > "$LOG_FILE"
                 fi
                 break
             fi
-        done < <(tac "$LOG_FILE")  # Read log file in reverse
+        done < <(tac "$LOG_FILE")
     fi
-
-    # Append the new log message
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE" 2>&1
 }
 
@@ -98,7 +86,6 @@ sysReboot() {
     sudo /sbin/reboot
 }
 
-# Parse command-line options
 if [[ "$1" == "" ]]; then
     echo "Error: No option provided."
     help
