@@ -14,6 +14,12 @@ if [ ! -f "/usr/local/bin/pishrink" ]; then
     echo "PiShrink not found at /usr/local/bin/pishrink."
     echo "Please install PiShrink by following the instructions at: https://github.com/Drewsif/PiShrink"
     exit 1
+else
+    if ! command -v pigz &> /dev/null; then
+        echo "pigz not found. It is recommended for faster compression with PiShrink."
+        echo "Please install pigz by running: sudo apt-get install pigz"
+        exit 1
+    fi
 fi
 
 echo "Creating backup of SD card to $BACKUP_IMAGE..."
