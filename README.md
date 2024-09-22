@@ -1,5 +1,8 @@
-These are some script I made for personal use to have all the usual maintenance tasks all in one file to be later invoked from cron or manually.
-Feel free to use them or suggest any changes. :)
+These are some scripts I made for personal use, but feel free to use them or suggest any changes. :)
+
+## Motivation
+I wanted to have all the usual maintenance tasks in one file to be easily run manually or invoked from cron.
+There's also a backup script that uses `dd` and the excellent [PiShrink by Drewsif](https://github.com/Drewsif/PiShrink) to massively reduce the space required by backups.
 
 ## Installation
 ```
@@ -29,10 +32,10 @@ Cleans up teleporter backups older than 1 year.
 Updates Pi-hole's adlists.  
 
 - `-r, --reboot`
-Logs a message and reboots the system afterward.
+Reboots the system.
 
-- `-h, --help`
-Displays usage information, including all available options and a brief description of each.
+## Options for pibackup.sh
+No options. Please edit the script to set the location of your backup folder and change the filename settings (if you want).
 
 ## Crontab settings
 ```
