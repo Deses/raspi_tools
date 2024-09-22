@@ -2,6 +2,7 @@ These are some scripts I made for personal use, but feel free to use them or sug
 
 ## Motivation
 I wanted to have all the usual maintenance tasks in one file to be easily run manually or invoked from cron.
+
 There's also a backup script that uses `dd` and the excellent [PiShrink by Drewsif](https://github.com/Drewsif/PiShrink) to massively reduce the space required by backups.
 
 ## Installation
@@ -37,13 +38,17 @@ Reboots the system.
 ## Options for pibackup.sh
 No options. Please edit the script to set the location of your backup folder and change the filename settings (if you want).
 
-## Crontab settings
+## Crontab example
 ```
-# 5 AM Daily
-0  5 * * *      maintenance -t -c
-# 5 AM on saturdays
-#5  5 * * 6      maintenance -u
-#10 5 * * 6      maintenance -p
-15 5 * * 6      maintenance -g
-20 5 * * 6      maintenance -r
+# 4 am - Daily
+0  4 * * *      maintenance -t -c
+
+# 5 am - Saturday
+0  5 * * 6      maintenance -u
+5  5 * * 6      maintenance -p
+10 5 * * 6      maintenance -g
+15 5 * * 6      maintenance -r
+
+# 5 am - Sunday
+0  5 * * 0      pibackup
 ```
