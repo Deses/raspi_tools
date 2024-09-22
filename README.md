@@ -1,9 +1,17 @@
-This is my little script to have all the usual maintenance tasks all in one file to be later used in several cron jobs.
+These are some script I made for personal use to have all the usual maintenance tasks all in one file to be later invoked from cron or manually.
 
-I put the scrip into `/usr/local/bin/` and gave it execution perms: `chmod +x maintenance`.
+## Installation
+```
+wget https://raw.githubusercontent.com/Deses/raspi_tools/refs/heads/main/maintenance.sh
+chmod +x maintenance.sh
+sudo mv maintenance.sh /usr/local/bin/maintenance
 
-Then, in crontab I set it like this to run some tasks daily and some on saturday.
+wget https://raw.githubusercontent.com/Deses/raspi_tools/refs/heads/main/pibackup.sh
+chmod +x pibackup.sh
+sudo mv pibackup.sh /usr/local/bin/pibackup
+```
 
+## Crontab settings
 ```
 0  5 * * *      maintenance -t
 1  5 * * *      maintenance -c
