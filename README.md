@@ -42,14 +42,14 @@ No options. Edit the script to set the location of your backup folder and change
 ## Crontab example
 ```
 # 4 am - Daily
-0  4 * * *      maintenance -t -c
+0  4 * * *      /usr/local/bin/maintenance -t -c
 
 # 5 am - Saturday
-0  5 * * 6      maintenance -u
-5  5 * * 6      maintenance -p
-10 5 * * 6      maintenance -g
-15 5 * * 6      maintenance -r
+0  5 * * 6      /usr/local/bin/maintenance -u
+5  5 * * 6      /usr/local/bin/maintenance -p
+10 5 * * 6      /usr/local/bin/maintenance -g
+15 5 * * 6      /usr/local/bin/maintenance -r
 
 # 5 am - Sunday
-0  5 * * 0      pibackup
+0  5 * * 0      /usr/local/bin/pibackup
 ```
