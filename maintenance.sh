@@ -36,7 +36,7 @@ help() {
 }
 
 piholeTeleport() {
-    if ! command -v pihole &> /dev/null; then
+    if ! command -v /usr/local/bin/pihole &> /dev/null; then
         log "Pi-hole is not installed. Please install Pi-hole before running this option."
         exit 1
     else
@@ -62,7 +62,7 @@ sysUpgrade() {
 }
 
 piholeUpdate() {
-    if ! command -v pihole &> /dev/null; then
+    if ! command -v /usr/local/bin/pihole &> /dev/null; then
         log "Pi-hole is not installed. Please install Pi-hole before running this option."
         exit 1
     else
@@ -72,7 +72,7 @@ piholeUpdate() {
 }
 
 piholeGravity() {
-    if ! command -v pihole &> /dev/null; then
+    if ! command -v /usr/local/bin/pihole &> /dev/null; then
         log "Pi-hole is not installed. Please install Pi-hole before running this option."
         exit 1
     else
